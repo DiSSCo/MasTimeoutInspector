@@ -7,7 +7,7 @@ def update_timeout():
     sql = """
     update public.mas_job_record
     set error = 'TIMEOUT', job_state = 'FAILED'
-    where time_to_live < (select CURRENT_TIMESTAMP) and job_state = 'SCHEDULED';
+    where time_to_live < (select CURRENT_TIMESTAMP) and (job_state = 'SCHEDULED' or job_state = 'RUNNING');
     """
 
     try:
