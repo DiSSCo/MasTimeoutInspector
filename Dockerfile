@@ -8,5 +8,8 @@ WORKDIR application/
 RUN pip install -r requirements.txt
 COPY src/* ./
 
+RUN adduser --disabled-password --gecos '' --system --uid 1001 python && chown -R python /application
+
+USER 1001
 
 CMD ["python3", "./timeout.py"]
